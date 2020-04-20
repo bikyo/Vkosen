@@ -33,6 +33,6 @@ class VKosenBot(commands.Bot):
 
 # DeepBotのインスタンス化及び起動処理
 if __name__ == '__main__':
-    TOKEN = os.environ.get('DISCORD_TOKEN') # 環境変数からトークンを読み込む
+    TOKEN = os.environ.get('VKOSEN_TOKEN') # 環境変数からトークンを読み込む
     bot = VKosenBot(command_prefix='$')
     bot.run(TOKEN)

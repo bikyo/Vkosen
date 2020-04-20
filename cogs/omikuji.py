@@ -6,6 +6,7 @@ class RandomCog(commands.Cog):
 
     # TestCogクラスのコンストラクタ。Botを受取り、インスタンス変数として保持。
     def __init__(self, bot):
+        random.seed()
         self.bot = bot
 
     # コマンドの作成。コマンドはcommandデコレータで必ず修飾する。

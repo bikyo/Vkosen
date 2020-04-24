@@ -30,14 +30,14 @@ class RandomCog(commands.Cog):
 
     @commands.command()
     async def fettuccine(self, ctx):
-        '''おみくじを引く'''
+        '''ランダムでフェットチーネをおすすめ'''
         flavor = ['イタリアングレープ', 'イタリアンピーチ', 'イタリアンレモン', 'カシスオレンジ', 'グレープソーダ', 'コーラ', 'ソーダ']
         num = random.randrange(len(flavor))
         await ctx.send(f'{ctx.author.name}さん、フェットチーネグミ{flavor[num]}味がおすすめですよ！')
 
     @commands.command()
     async def ramune(self, ctx):
-        '''おみくじを引く'''
+        '''ランダムでラムネをおすすめ'''
         flavor = ['ハイレモン', 'ヨーグレット', 'コーラパンチ']
         num = random.randrange(len(flavor))
         await ctx.send(f'{ctx.author.name}さん、今日は{flavor[num]}を食べましょう！')

@@ -34,7 +34,13 @@ class RandomCog(commands.Cog):
         flavor = ['イタリアングレープ', 'イタリアンピーチ', 'イタリアンレモン', 'カシスオレンジ', 'グレープソーダ', 'コーラ', 'ソーダ']
         num = random.randrange(len(flavor))
         await ctx.send(f'{ctx.author.name}さん、フェットチーネグミ{flavor[num]}味がおすすめですよ！')
-    
+
+    @commands.command()
+    async def ramune(self, ctx):
+        '''おみくじを引く'''
+        flavor = ['ハイレモン', 'ヨーグレット', 'コーラパンチ']
+        num = random.randrange(len(flavor))
+        await ctx.send(f'{ctx.author.name}さん、今日は{flavor[num]}を食べましょう！')
 
 # Bot本体側からコグを読み込む際に呼び出される関数。
 def setup(bot):

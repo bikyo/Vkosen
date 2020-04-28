@@ -36,9 +36,9 @@ class RandomCog(commands.Cog):
         await ctx.send(f'{ctx.author.name}さん、フェットチーネグミ{flavor[num]}味がおすすめですよ！')
 
     @commands.command()
-    async def ramune(self, ctx):
-        '''ランダムでラムネをおすすめ'''
-        flavor = ['ハイレモン', 'ヨーグレット', 'コーラパンチ']
+    async def tablet(self, ctx):
+        '''ランダムでタブレット菓子をおすすめ'''
+        flavor = ['ハイレモン', 'ヨーグレット', 'コーラパンチ', 'カルピスタブレット']
         num = random.randrange(len(flavor))
         await ctx.send(f'{ctx.author.name}さん、今日は{flavor[num]}を食べましょう！')
 

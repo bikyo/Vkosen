@@ -17,7 +17,8 @@ class RandomCog(commands.Cog):
         unsei = ['大吉', '吉', '中吉', '小吉', '末吉', '凶', '大凶']
         num = random.randrange(len(unsei))
         #await ctx.send(f'{ctx.author.name}さんの今日の運勢は{unsei[num]}です！')
-        await ctx.send(f'{ctx.author.name}さんの今日の運勢は{unsei[6] if ctx.author.name == 雪野冬磨 else unsei[0]}です！')
+        num = random.randrange(len(unsei) - 2)
+        await ctx.send(f'{ctx.author.name}さんの今日の運勢は{unsei[6] if ctx.author.name == 雪野冬磨 else unsei[num]}です！')
     
     @commands.command()
     async def dice(self, ctx, num=6):

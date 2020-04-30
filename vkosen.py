@@ -1,4 +1,5 @@
 # インストールした discord.py を読み込む
+import discord
 from discord.ext import commands
 
 import os
@@ -10,8 +11,10 @@ INITIAL_EXTENSIONS = [
     'cogs.cat',
     'cogs.gatya',
     'cogs.greet',
+    'cogs.mathematics',
     'cogs.omikuji',
-    'cogs.sample'
+    'cogs.sample',
+    'cogs.sort'
 ]
 
 class VKosenBot(commands.Bot):
@@ -30,6 +33,7 @@ class VKosenBot(commands.Bot):
     async def on_ready(self):
         # 起動したらターミナルにログイン通知が表示される
         print('ログインしました')
+        await self.change_presence(activity=discord.Game('プログラム'))
 
 
 # DeepBotのインスタンス化及び起動処理

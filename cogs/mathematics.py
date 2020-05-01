@@ -1,4 +1,6 @@
 from discord.ext import commands
+import sympy as sym
+from sympy import *
 import math
 
 # コグとして用いるクラスを定義。
@@ -28,6 +30,39 @@ class MathCog(commands.Cog):
             await ctx.send('数字を入力して下さい')
         else:
             await ctx.send(f'表面積：{4.0 * math.pi * radius * radius}\n体積　：{4.0 / 3.0 * math.pi * radius * radius * radius}')
+
+    @commands.command()
+    async def diff(self, ctx, y='0', n='1'):
+        '''関数をxで微分する'''
+        x = sym.symbols('x')
+        try:
+            y = eval(y)
+            n = abs(int(n))
+        except:
+            await ctx.send('Pythonのフォーマットに対応した変数はxのみの数式を入力してください')
+        else:
+            y = sym.diff(y, x, n)
+            prime = ['\'' for i in range(n)]
+            prime = ''.join(prime)
+            await ctx.send(f'y{prime} = {y}')
+
+    @commands.command()
+    async def intg(self, ctx, y='0', a='0', b='0'):
+        '''関数をxで積分する'''
+        x = sym.symbols('x')
+        try:
+            y = eval(y)
+            a = int(a)
+            b = int(b)
+        except:
+            await ctx.send('Pythonのフォーマットに対応した変数はxのみの数式を入力してください')
+        else:
+            if a == b:
+                y = sym.integrate(y, x)
+                await ctx.send(f'∫ydx = {y}')
+            else:
+                y = sym.integrate(y, (x, a, b))
+                await ctx.send(f'∫[{a}:{b}]ydx = {y}')
 
 # Bot本体側からコグを読み込む際に呼び出される関数。
 def setup(bot):

@@ -11,6 +11,7 @@ INITIAL_EXTENSIONS = [
     'cogs.cat',
     'cogs.gatya',
     'cogs.greet',
+    'cogs.image',
     'cogs.mathematics',
     'cogs.omikuji',
     'cogs.sample',

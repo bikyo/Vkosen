@@ -19,7 +19,9 @@ class RandomCog(commands.Cog):
         #await ctx.send(f'{ctx.author.name}さんの今日の運勢は{unsei[num]}です！')
         flag = False
         string = ctx.author.name[0:2]
-        if string == '雪野' or string == '雪の' or string == 'ゆき' or string == 'ゆき':
+        if string == '雪野' or string == '雪の' or string == 'ゆき':
+            flag = True
+        if string == '雪ノ' or string == 'ユキ' or string == 'yu':
             flag = True
         await ctx.send(f'{ctx.author.name}さんの今日の運勢は{"早起きすれば吉" if flag else unsei[num]}です！')
     

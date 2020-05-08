@@ -14,9 +14,10 @@ class CatCog(commands.Cog):
         await ctx.send('にゃーん')
 
     @commands.command()
-    async def echo(self, ctx, string):
+    async def echo(self, ctx, *args):
         '''オウム返し'''
-        await ctx.send(f'{string}')
+        args = ' '.join(args)
+        await ctx.send(f'{args}')
 
     @commands.command()
     async def shibuki(self, ctx):

@@ -14,16 +14,15 @@ class RandomCog(commands.Cog):
     @commands.command()
     async def omikuji(self, ctx):
         '''おみくじを引く'''
-        unsei = ['大吉', '吉', '中吉', '小吉', '末吉', '凶', '大凶']
-        num = random.randrange(len(unsei))
-        #await ctx.send(f'{ctx.author.name}さんの今日の運勢は{unsei[num]}です！')
-        flag = False
-        string = ctx.author.name[0:2]
-        if string == '雪野' or string == '雪の' or string == 'ゆき':
-            flag = True
-        if string == '雪ノ' or string == 'ユキ' or string == 'yu':
-            flag = True
-        await ctx.send(f'{ctx.author.name}さんの今日の運勢は{"早起きすれば吉" if flag else unsei[num]}です！')
+        unsei = [('大吉', 10), ('吉', 25), ('中吉', 15), ('小吉', 15), ('末吉', 15), ('凶', 15), ('大凶', 5)]
+        num = random.randrange(100)
+        un = '平'
+        for u in unsei:
+            num -= u[1]
+            if num < 0:
+                un = u[0]
+                break
+        await ctx.send(f'{ctx.author.name}さんの今日の運勢は{un}です！')
     
     @commands.command()
     async def dice(self, ctx, num=6):

@@ -21,7 +21,7 @@ class JankenCog(commands.Cog):
         num = random.randrange(999) % 3 - 1
         string = '望鳴の手 : '
         for i in range(1, 4):
-            if hand = rotehands[i]:
+            if hand == rotehands[i]:
                 string += rotehands[i + num] + '\n'
 
         if num == -1:
@@ -53,11 +53,11 @@ class JankenCog(commands.Cog):
             string += '\nやるやん！\n明日は俺にリベンジさせて。\nでは、どうぞ。'
         else:
             string += '\n俺の勝ち！\n'
-            if hand = 'グー':
+            if hand == 'グー':
                 string += '負けは次につながるチャンスです。\nネバーギブアップ！'
-            if hand = 'チョキ':
+            if hand == 'チョキ':
                 string += 'たかがじゃんけん、そう思ってないですか？\nそれやったら明日も俺が勝ちますよ。'
-            if hand = 'パー':
+            if hand == 'パー':
                 string += 'なんで負けたか、明日まで考えといてください。\nそしたら何かが見えてくるはずです。'
             string += '\nほな、いただきます。'
         await ctx.send(f'{string}')

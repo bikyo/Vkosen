@@ -13,20 +13,23 @@ class JankenCog(commands.Cog):
     @commands.command()
     async def janken(self, ctx, hand):
         '''じゃんけん'''
-        num = random.randrange(1000) % 2
-        string = '望鳴の手 : '
-        if hand == 'グー':
-            string += 'チョキ' if num == 0 else 'パー'
-        elif hand == 'チョキ':
-            string += 'パー' if num == 0 else 'グー'
-        elif hand == 'パー':
-            string += 'グー' if num == 0 else 'チョキ'
-        else:
-            string = 'じゃんけんの手を出してください'
-            await ctx.send(f'{string}')
+        rotehands = ['パー', 'グー', 'チョキ', 'パー', 'グー']
+        if not hand in rotehands:
+            await ctx.send('じゃんけんの手を出してください')
             return
-        string += '\n'
-        string += f'{ctx.author.name}さんの勝ち！' if num == 0 else '望鳴の勝ちだよ'
+
+        num = random.randrange(999) % 3 - 1
+        string = '望鳴の手 : '
+        for i in range(1, 4):
+            if hand = rotehands[i]:
+                string += rotehands[i + num] + '\n'
+
+        if num == -1:
+            string += '望鳴の勝ちだよ'
+        if num == 0:
+            string += 'アイコだよ'
+        if num == 1:
+            string += f'{ctx.author.name}さんの勝ち！'
         await ctx.send(f'{string}')
     
 
@@ -45,8 +48,18 @@ class JankenCog(commands.Cog):
             string = 'じゃんけんの手を出してください'
             await ctx.send(f'{string}')
             return
-        string += '\n'
-        string += f'{ctx.author.name}さんの勝ち！' if num == 0 else '俺の勝ち！'
+
+        if num < 10:
+            string += '\nやるやん！\n明日は俺にリベンジさせて。\nでは、どうぞ。'
+        else:
+            string += '\n俺の勝ち！\n'
+            if hand = 'グー':
+                string += '負けは次につながるチャンスです。\nネバーギブアップ！'
+            if hand = 'チョキ':
+                string += 'たかがじゃんけん、そう思ってないですか？\nそれやったら明日も俺が勝ちますよ。'
+            if hand = 'パー':
+                string += 'なんで負けたか、明日まで考えといてください。\nそしたら何かが見えてくるはずです。'
+            string += '\nほな、いただきます。'
         await ctx.send(f'{string}')
 
 # Bot本体側からコグを読み込む際に呼び出される関数。

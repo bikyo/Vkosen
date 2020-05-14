@@ -16,7 +16,8 @@ INITIAL_EXTENSIONS = [
     'cogs.mathematics',
     'cogs.omikuji',
     'cogs.sample',
-    'cogs.sort'
+    'cogs.sort',
+    'cogs.voice'
 ]
 
 class VKosenBot(commands.Bot):

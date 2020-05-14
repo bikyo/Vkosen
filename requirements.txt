@@ -1,4 +1,5 @@
-discord.py
+discord.py[voice]
 numpy
 sympy
 opencv-python
+youtube_dl

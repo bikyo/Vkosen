@@ -19,7 +19,7 @@ class TransCog(commands.Cog):
     async def retrans(self, ctx, dst, *word): # 関数名=コマンド名
         '''翻訳[中間翻訳言語、文]'''
         word = ' '.join(word)
-        src = Translator().detect(word)
+        src = Translator().detect(word).lang
         word = Translator().translate(word, dest=dst).text
         await ctx.send(f'{Translator().translate(word, dest=src).text}')
 

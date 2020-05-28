@@ -17,7 +17,7 @@ INITIAL_EXTENSIONS = [
     'cogs.omikuji',
     'cogs.sample',
     'cogs.sort',
-    'cogs.trans'
+    'cogs.trans',
     'cogs.voice'
 ]
 

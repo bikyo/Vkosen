@@ -3,7 +3,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.voice_client import VoiceClient
 import youtube_dl
-import asyncio
 
 
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -59,21 +58,6 @@ class VoiceCog(commands.Cog):
         self.bot = bot
         self.voice = None
         self.vc = None
-        self.url_queue = []
-
-    def play_after(self, e=None):
-        fut = asyncio.run_coroutine_threadsafe(self.play_queue(), self.bot.loop)
-        try:
-            fut.result()
-        except:# exceptions as error:
-            print('error')
-
-    async def play_queue(self):
-        if self.url_queue:
-            player = await YTDLSource.from_url(self.url_queue[0], loop=self.bot.loop)
-            #await ctx.send(f'Play {self.url_queue[0]}')
-            del self.url_queue[0]
-            self.vc.play(player, after=self.play_after)
 
     @commands.command(aliases=['j'])
     async def join(self, ctx):
@@ -96,17 +80,13 @@ class VoiceCog(commands.Cog):
             await ctx.send('私はボイスチャンネルに参加していません')
             return
         if self.vc.is_playing():
-            #self.vc.stop()
-            self.url_queue.append(url)
-            url_str = 'Queue'
-            for i in range(len(self.url_queue)):
-                url_str += '\n' + str(i+1) + '：' + self.url_queue[i]
-            await ctx.send(f'{url_str}')
-            return
+            self.vc.stop()
 
+        #ffmpeg_audio_source = discord.FFmpegPCMAudio('./music/flowering_night.mp3')
+        #voice_client.play(ffmpeg_audio_source)
         player = await YTDLSource.from_url(url, loop=self.bot.loop)
-        self.vc.play(player, after=self.play_after)
-        #self.vc.play(player)
+        #voice_client.play(player)
+        self.vc.play(player)
         await ctx.send('Play!')
 
     @commands.command()
@@ -125,40 +105,13 @@ class VoiceCog(commands.Cog):
                 self.vc.resume()
                 await ctx.send('Resume!')
 
-    @commands.command(aliases=['st'])
+    @commands.command(aliases=['s'])
     async def stop(self, ctx):
         '''ボイスチャンネルの音楽を止める'''
         if self.vc is not None:
             if(self.vc.is_playing()):
                 self.vc.stop()
                 await ctx.send('Stop!')
-
-    @commands.command(aliases=['sk'])
-    async def skip(self, ctx):
-        '''現在の曲をスキップする'''
-        if self.vc is not None:
-            if self.url_queue:
-                if(self.vc.is_playing()):
-                    self.vc.stop()
-                self.play_after()
-            
-    
-    @commands.command()
-    async def clear(self, ctx):
-        '''キューを空にする'''
-        self.url_queue = []
-        await ctx.send('Clear Queue!')
-
-    @commands.command(aliases=['del'])
-    async def delete(self, ctx, num):
-        '''指定した要素を削除する(1から)'''
-        try:
-            num = int(num)
-            del self.url_queue[num]
-        except:
-            await ctx.send('有効な整数を渡してください')
-        else:
-            await ctx.send('Deleted!')
 
     @commands.command(aliases=['disconnect', 'bye'])
     async def leave(self, ctx):
@@ -168,10 +121,8 @@ class VoiceCog(commands.Cog):
         if not voice_client:
             await ctx.send('Botはこのサーバーのボイスチャンネルに参加していません')
             return
-        self.url_queue = []
         await voice_client.disconnect()
         self.vc = None
-        await ctx.send('Bye!')
 
 
 # Bot本体側からコグを読み込む際に呼び出される関数。

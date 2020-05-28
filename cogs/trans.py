@@ -15,6 +15,14 @@ class TransCog(commands.Cog):
         word = ' '.join(word)
         await ctx.send(f'{Translator().translate(word, dest=dst).text}')
 
+    @commands.command()
+    async def retrans(self, ctx, dst, *word): # 関数名=コマンド名
+        '''翻訳[中間翻訳言語、文]'''
+        word = ' '.join(word)
+        src = Translator().detect(word)
+        word = Translator().translate(word, dest=dst).text
+        await ctx.send(f'{Translator().translate(word, dest=src).text}')
+
 # Bot本体側からコグを読み込む際に呼び出される関数。
 def setup(bot):
     bot.add_cog(TransCog(bot))

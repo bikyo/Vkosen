@@ -9,7 +9,6 @@ import traceback
 # 読み込むコグの名前
 INITIAL_EXTENSIONS = [
     'cogs.cat',
-    'cogs.gatya',
     'cogs.greet',
     'cogs.image',
     'cogs.janken',

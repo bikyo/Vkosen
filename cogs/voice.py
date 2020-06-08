@@ -77,6 +77,7 @@ class VoiceCog(commands.Cog):
 
     @commands.command(aliases=['j'])
     async def join(self, ctx):
+        '''ボイスチャンネルへ参加'''
         voice_state = ctx.author.voice
         if (not voice_state) or (not voice_state.channel):
             #もし送信者がどこのチャンネルにも入っていないなら
@@ -90,7 +91,7 @@ class VoiceCog(commands.Cog):
     # コマンドの作成。コマンドはcommandデコレータで必ず修飾する。
     @commands.command(aliases=['p'])
     async def play(self, ctx, url=''):
-        '''指定された音声ファイルを流します'''
+        '''指定された音声ファイルを流す'''
         voice_client = ctx.message.guild.voice_client
         if not voice_client:
             await ctx.send('私はボイスチャンネルに参加していません')
@@ -111,7 +112,7 @@ class VoiceCog(commands.Cog):
 
     @commands.command()
     async def pause(self, ctx):
-        '''ボイスチャンネルの音楽を止める'''
+        '''再生中の音楽を一時停止'''
         if self.vc is not None:
             if(self.vc.is_playing()):
                 self.vc.pause()
@@ -119,7 +120,7 @@ class VoiceCog(commands.Cog):
 
     @commands.command()
     async def resume(self, ctx):
-        '''ボイスチャンネルの音楽を止める'''
+        '''一時停止中の音楽を再開'''
         if self.vc is not None:
             if(not self.vc.is_playing()):
                 self.vc.resume()

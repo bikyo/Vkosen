@@ -19,13 +19,13 @@ class JankenCog(commands.Cog):
             return
 
         num = random.randrange(999) % 3 - 1
-        string = '望鳴の手 : '
+        string = 'Vbotの手 : '
         for i in range(1, 4):
             if hand == rotehands[i]:
                 string += rotehands[i + num] + '\n'
 
         if num == -1:
-            string += '望鳴の勝ちだよ'
+            string += 'Vbotの勝ちだよ'
         if num == 0:
             string += 'アイコだよ'
         if num == 1:
@@ -37,7 +37,7 @@ class JankenCog(commands.Cog):
     async def honda(self, ctx, hand):
         '''じゃんけん'''
         num = random.randrange(1000)
-        string = '望鳴の手 : '
+        string = 'Vbotの手 : '
         if hand == 'グー':
             string += 'チョキ' if num < 10 else 'パー'
         elif hand == 'チョキ':

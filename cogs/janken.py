@@ -29,7 +29,7 @@ class JankenCog(commands.Cog):
         if num == 0:
             string += 'アイコだよ'
         if num == 1:
-            string += f'{ctx.author.name}さんの勝ち！'
+            string += f'{ctx.author.display_name}さんの勝ち！'
         await ctx.send(f'{string}')
     
 

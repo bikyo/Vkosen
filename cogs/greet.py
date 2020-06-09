@@ -11,12 +11,12 @@ class GreetCog(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         '''出会いのあいさつをする'''
-        await ctx.send(f'どうも、{ctx.author.name}さん!')
+        await ctx.send(f'どうも、{ctx.author.display_name}さん!')
 
     @commands.command()
     async def goodbye(self, ctx):
         '''別れの挨拶をする'''
-        await ctx.send(f'じゃあね、{ctx.author.name}さん!')
+        await ctx.send(f'じゃあね、{ctx.author.display_name}さん!')
 
 # Bot本体側からコグを読み込む際に呼び出される関数。
 def setup(bot):

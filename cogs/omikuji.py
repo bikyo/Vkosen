@@ -22,7 +22,7 @@ class RandomCog(commands.Cog):
             if num < 0:
                 un = u[0]
                 break
-        await ctx.send(f'{ctx.author.name}さんの今日の運勢は{un}です！')
+        await ctx.send(f'{ctx.author.display_name}さんの今日の運勢は{un}です！')
     
     @commands.command()
     async def dice(self, ctx, num=6):
@@ -39,14 +39,14 @@ class RandomCog(commands.Cog):
         '''ランダムでフェットチーネをおすすめ'''
         flavor = ['イタリアングレープ', 'イタリアンピーチ', 'イタリアンレモン', 'カシスオレンジ', 'グレープソーダ', 'コーラ', 'ソーダ']
         num = random.randrange(len(flavor))
-        await ctx.send(f'{ctx.author.name}さん、フェットチーネグミ{flavor[num]}味がおすすめですよ！')
+        await ctx.send(f'{ctx.author.display_name}さん、フェットチーネグミ{flavor[num]}味がおすすめですよ！')
 
     @commands.command()
     async def tablet(self, ctx):
         '''ランダムでタブレット菓子をおすすめ'''
         flavor = ['ハイレモン', 'ヨーグレット', 'コーラパンチ', 'カルピスタブレット']
         num = random.randrange(len(flavor))
-        await ctx.send(f'{ctx.author.name}さん、今日は{flavor[num]}を食べましょう！')
+        await ctx.send(f'{ctx.author.display_name}さん、今日は{flavor[num]}を食べましょう！')
 
 # Bot本体側からコグを読み込む際に呼び出される関数。
 def setup(bot):

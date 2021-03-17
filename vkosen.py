@@ -18,7 +18,7 @@ INITIAL_EXTENSIONS = [
     'cogs.sample',
     'cogs.sort',
     'cogs.trans',
-    'cogs.voice'
+    #'cogs.voice'
 ]
 
 class VKosenBot(commands.Bot):

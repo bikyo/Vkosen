@@ -2,4 +2,4 @@ discord.py
 googletrans
 numpy
 sympy
-opencv-python
+opencv-python-headless

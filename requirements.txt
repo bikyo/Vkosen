@@ -3,4 +3,3 @@ googletrans
 numpy
 sympy
 opencv-python
-youtube_dl

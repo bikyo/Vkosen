@@ -40,7 +40,7 @@ class RandomCog(commands.Cog):
             elif roll[-1] == 'd':
                 num = int(rolls[0])
 
-        result = [random.randrange(max_) + 1 for i in range(len(num))]
+        result = [random.randrange(max_) + 1 for i in range(num)]
         result = ', '.join(result)
         await ctx.send(f'{roll} = {result}')
 

@@ -31,14 +31,14 @@ class RandomCog(commands.Cog):
         num = 1
         max_ = 6
 
-        if len(rolls) >= 2:
+        try:
             num = int(rolls[0])
+        except:
+            pass
+        try:
             max_ = int(rolls[1])
-        elif len(rolls) == 1:
-            if roll[0] == 'd':
-                max_ = int(rolls[0])
-            elif roll[-1] == 'd':
-                num = int(rolls[0])
+        except:
+            pass
 
         result = [str(random.randrange(max_) + 1) for i in range(num)]
         result = ', '.join(result)

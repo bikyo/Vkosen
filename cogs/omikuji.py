@@ -25,14 +25,24 @@ class RandomCog(commands.Cog):
         await ctx.send(f'{ctx.author.display_name}さんの今日の運勢は{un}です！')
     
     @commands.command()
-    async def dice(self, ctx, num=6):
+    async def dice(self, ctx, roll='1d6'):
         '''サイコロを投げる'''
-        try:
-            num = int(num)
-            if(num <= 0): num = 6
-        except:
-            num = 6
-        await ctx.send(f'dice{num} = {random.randrange(num) + 1}')
+        rolls = roll.split('d')
+        num = 1
+        max_ = 6
+
+        if len(rolls) >= 2:
+            num = int(rolls[0])
+            max_ = int(rolls[1])
+        elif len(rolls) == 1:
+            if roll[0] == 'd':
+                max_ = int(rolls[0])
+            elif roll[-1] == 'd':
+                num = int(rolls[0])
+
+        result = [random.randrange(max_) + 1 for i in range(len(num))]
+        result = ', '.join(result)
+        await ctx.send(f'{roll} = {result}')
 
     @commands.command()
     async def fettuccine(self, ctx):

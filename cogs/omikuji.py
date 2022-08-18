@@ -48,11 +48,11 @@ class RandomCog(commands.Cog):
     async def amasita(self, ctx):
         '''雨下さんがママか確認'''
         if random.randint(1, 10000) % 10 == 0:
-            await ctx.send('雨下さんは{ctx.author.display_name}さんのママです。')
+            await ctx.send(f'雨下さんは{ctx.author.display_name}さんのママです。')
         elif random.randint(1, 10000) % 10 == 1:
-            await ctx.send('雨下さん{ctx.author.display_name}さんのママじゃないので......（冷静）')
+            await ctx.send(f'雨下さん{ctx.author.display_name}さんのママじゃないので......（冷静）')
         else:
-            await ctx.send('雨下さんは{ctx.author.display_name}さんのママではありません。')
+            await ctx.send(f'雨下さんは{ctx.author.display_name}さんのママではありません。')
 
     @commands.command()
     async def fettuccine(self, ctx):

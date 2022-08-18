@@ -14,7 +14,7 @@ class RandomCog(commands.Cog):
     @commands.command()
     async def omikuji(self, ctx):
         '''おみくじを引く'''
-        unsei = [('大吉', 10), ('吉', 25), ('中吉', 15), ('小吉', 15), ('末吉', 15), ('凶', 15), ('大凶', 5)]
+        unsei = [('大吉', 20), ('吉', 20), ('中吉', 20), ('小吉', 20), ('末吉', 20), ('凶', 15), ('大凶', 5)]
         num = random.randrange(100)
         un = '平'
         for u in unsei:
@@ -43,6 +43,16 @@ class RandomCog(commands.Cog):
         result = [str(random.randrange(max_) + 1) for i in range(num)]
         result = ', '.join(result)
         await ctx.send(f'{roll} = {result}')
+    
+    @commands.command()
+    async def amasita(self, ctx):
+        '''雨下さんがママか確認'''
+        if random.randint(1, 10000) % 10 == 0:
+            await ctx.send('雨下さんは{ctx.author.display_name}さんのママです。')
+        elif random.randint(1, 10000) % 10 == 1:
+            await ctx.send('雨下さん{ctx.author.display_name}さんのママじゃないので......（冷静）')
+        else:
+            await ctx.send('雨下さんは{ctx.author.display_name}さんのママではありません。')
 
     @commands.command()
     async def fettuccine(self, ctx):
